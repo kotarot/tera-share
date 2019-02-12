@@ -6,7 +6,7 @@ Description: WP plugin that inserts blog-card-like links in articles.
 Version: 0.2.0
 Author: Kotaro Terada
 Author URI: http://www.terabo.net/
-License: MIT
+License: Apache License 2.0
 */
 
 function fontawesome_css() {
