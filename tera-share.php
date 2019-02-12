@@ -3,7 +3,7 @@
 Plugin Name: Tera Share
 Plugin URI: https://github.com/kotarot/tera-share
 Description: WP plugin that inserts blog-card-like links in articles.
-Version: 0.2 (2015-03-04)
+Version: 0.2.0
 Author: Kotaro Terada
 Author URI: http://www.terabo.net/
 License: MIT
