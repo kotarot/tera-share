@@ -29,7 +29,7 @@ Here is guide of attributes:
 * imgurl (optional): Thumbnail image of the page. If this is omitted, the capture of the page will be shown.
 
 
-Future works
+Future work
 ------------
 
 * Auto generation of title, sitename, description, and thumbnail from URL by referring to the OGP information.
@@ -38,4 +38,4 @@ Future works
 Lisence
 -------
 
-MIT.
+Apache License 2.0
