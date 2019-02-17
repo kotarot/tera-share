@@ -3,7 +3,7 @@
 Plugin Name: Tera Share
 Plugin URI: https://github.com/kotarot/tera-share
 Description: WP plugin that inserts blog-card-like links in articles.
-Version: 0.2.2
+Version: 0.2.3
 Author: Kotaro Terada
 Author URI: https://www.terabo.net/
 License: Apache License 2.0
@@ -54,7 +54,7 @@ function terashare_func($atts) {
     if ($imgurl) {
         $html .= '<img class="terashare-thumbnail" align="left" border="0" src="' . $imgurl . '" alt="Thumbnail of ' . $title . '" /></a>';
     } else {
-        $html .= '<img class="terashare-thumbnail" align="left" border="0" src="http://capture.heartrails.com/?' . $url . '" alt="Thumbnail of  ' . $title . '" /></a>';
+        $html .= '<img class="terachare-thumbnail" align="left" border="0" src="https://picsum.photos/160/120/?random" alt="Sample image by Lorem Picsum" /></a>';
     }
     $html .= '<a href="' . $url . '" target="_blank" class="terashare-title"><span class="terashare-title">' . $title . '</span></a>';
     if ($sitename) {
