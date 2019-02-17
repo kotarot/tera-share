@@ -26,7 +26,7 @@ Here is guide of attributes:
 * sitename (optional): Sitename of the page.
 * description (optional): Description or summary of the page.
 * url (mandatory): URL of the page.
-* imgurl (optional): Thumbnail image of the page. If this is omitted, the capture of the page will be shown.
+* imgurl (optional): Thumbnail image of the page. If this is omitted, a dummy image by [Lorem Picsum](https://picsum.photos/) will be shown.
 
 
 Future work
