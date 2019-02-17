@@ -3,7 +3,7 @@
 Plugin Name: Tera Share
 Plugin URI: https://github.com/kotarot/tera-share
 Description: WP plugin that inserts blog-card-like links in articles.
-Version: 0.2.3
+Version: 0.2.4
 Author: Kotaro Terada
 Author URI: https://www.terabo.net/
 License: Apache License 2.0
@@ -48,21 +48,33 @@ function terashare_func($atts) {
         $imgurl = plugins_url('default-thumbnail.png', __FILE__);
     }
 
+    // If it's an external link, append rel="noopener noreferrer"
+    $rel = '';
+    $parsed_url = parse_url($url);
+    if (is_null($parse_url) || !isset($_SERVER['HTTP_HOST']) ||
+            ($parsed_url['host'] !== $_SERVER['HTTP_HOST'])) {
+        $rel = ' rel="noopener noreferrer"';
+    }
+
     $html = '';
     $html .= '<div class="terashare terashare-clearfix">';
-    $html .= '<a href="' . $url . '" target="_blank">';
+    $html .= '<a href="' . $url . '" target="_blank"' . $rel . '>';
     if ($imgurl) {
-        $html .= '<img class="terashare-thumbnail" align="left" border="0" src="' . $imgurl . '" alt="Thumbnail of ' . $title . '" /></a>';
+        $html .= '<img class="terashare-thumbnail" align="left" border="0" src="'
+               . $imgurl . '" alt="Thumbnail of ' . $title . '" /></a>';
     } else {
-        $html .= '<img class="terashare-thumbnail" align="left" border="0" src="https://picsum.photos/160/120/?random" alt="Sample image by Lorem Picsum" /></a>';
+        $html .= '<img class="terashare-thumbnail" align="left" border="0" src='
+               . '"https://picsum.photos/160/120/?random" alt="Sample image by Lorem Picsum" /></a>';
     }
-    $html .= '<a href="' . $url . '" target="_blank" class="terashare-title"><span class="terashare-title">' . $title . '</span></a>';
+    $html .= '<a href="' . $url . '" target="_blank" class="terashare-title"' . $rel
+           . '><span class="terashare-title">' . $title . '</span></a>';
     if ($sitename) {
         $html .= '<div class="terashare-sitename"><i class="fa fa-globe"></i> ' . $sitename . '</div>';
     }
     $html .= '<div class="terashare-description">' . $description . '</div>';
     $html .= '<div class="terashare-url">';
-    $html .= '<a href="' . $url . '" target="_blank"><i class="fa fa-external-link"></i> ' . $url . '</a>';
+    $html .= '<a href="' . $url . '" target="_blank"' . $rel
+           . '><i class="fa fa-external-link"></i> ' . $url . '</a>';
     $html .= '</div>';
     $html .= '</div><!-- /.terashare -->';
     return $html . "\n";
