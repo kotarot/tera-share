@@ -3,7 +3,7 @@
 Plugin Name: Tera Share
 Plugin URI: https://github.com/kotarot/tera-share
 Description: WP plugin that inserts blog-card-like links in articles.
-Version: 0.2.0
+Version: 0.2.1
 Author: Kotaro Terada
 Author URI: https://www.terabo.net/
 License: Apache License 2.0
@@ -18,12 +18,12 @@ add_action('wp_head', 'fontawesome_css');
 function terashare_css() {
 $css = <<<EOT
 a.terashare-title{text-decoration:none;}
-span.terashare-title,div.terashare-sitename,div.terashare-description{color:#333;}
-div.terashare{width:550px;max-width:100%;border:solid 1px #ccc;padding:5px;margin:5px 0 10px;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius: 4px;}
+span.terashare-title,div.terashare-sitename{color:#222;}
+div.terashare{width:550px;max-width:100%;border:solid 1px #ccc;padding:5px;margin:5px 0 25px;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius: 4px;}
 img.terashare-thumbnail{height:100px;float:left;margin:0 10px 5px 0;}
 span.terashare-title{font-size:110%;font-weight:bold;}
 div.terashare-sitename{font-size:100%;text-align:right;}
-div.terashare-description{margin-top:8px;font-size:90%;line-height:140%;}
+div.terashare-description{color:#555;margin-top:8px;font-size:90%;line-height:140%;}
 div.terashare-url{text-align:right;font-size:80%;}
 div.terashare-clearfix:after{clear:both;content:' ';display:block;font-size:0;line-height:0;visibility:hidden;width:0;height:0}
 EOT;
@@ -32,6 +32,10 @@ EOT;
     echo '</style>' . "\n";
 }
 add_action('wp_head', 'terashare_css');
+
+function replace_amp_hash($str) {
+    return str_replace('&amp;#', '&#', $str);
+}
 
 // Shortcode: [terashare]
 function terashare_func($atts) {
@@ -43,8 +47,8 @@ function terashare_func($atts) {
         'imgurl'      => ''
     ), $atts));
 
-    $title = htmlspecialchars($title);
-    $description = htmlspecialchars($description);
+    //$title = replace_amp_hash(htmlspecialchars($title));
+    //$description = replace_amp_hash(htmlspecialchars($description));
     if (!$url) {
         $url = 'https://github.com/kotarot/tera-share';
         $imgurl = plugins_url('default-thumbnail.png', __FILE__);
@@ -60,7 +64,8 @@ function terashare_func($atts) {
     }
     $html .= '<a href="' . $url . '" target="_blank" class="terashare-title"><span class="terashare-title">' . $title . '</span></a>';
     if ($sitename) {
-        $html .= '<div class="terashare-sitename"><i class="fa fa-globe"></i> ' . htmlspecialchars($sitename) . '</div>';
+        //$html .= '<div class="terashare-sitename"><i class="fa fa-globe"></i> ' . htmlspecialchars($sitename) . '</div>';
+        $html .= '<div class="terashare-sitename"><i class="fa fa-globe"></i> ' . $sitename . '</div>';
     }
     $html .= '<div class="terashare-description">' . $description . '</div>';
     $html .= '<div class="terashare-url">';
