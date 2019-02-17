@@ -35,7 +35,7 @@ Future work
 * Auto generation of title, sitename, description, and thumbnail from URL by referring to the OGP information.
 
 
-Lisence
+License
 -------
 
 Apache License 2.0
