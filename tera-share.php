@@ -3,7 +3,7 @@
 Plugin Name: Tera Share
 Plugin URI: https://github.com/kotarot/tera-share
 Description: WP plugin that inserts blog-card-like links in articles.
-Version: 0.2.1
+Version: 0.2.2
 Author: Kotaro Terada
 Author URI: https://www.terabo.net/
 License: Apache License 2.0
@@ -33,10 +33,6 @@ EOT;
 }
 add_action('wp_head', 'terashare_css');
 
-function replace_amp_hash($str) {
-    return str_replace('&amp;#', '&#', $str);
-}
-
 // Shortcode: [terashare]
 function terashare_func($atts) {
     extract(shortcode_atts(array(
@@ -47,8 +43,6 @@ function terashare_func($atts) {
         'imgurl'      => ''
     ), $atts));
 
-    //$title = replace_amp_hash(htmlspecialchars($title));
-    //$description = replace_amp_hash(htmlspecialchars($description));
     if (!$url) {
         $url = 'https://github.com/kotarot/tera-share';
         $imgurl = plugins_url('default-thumbnail.png', __FILE__);
@@ -64,7 +58,6 @@ function terashare_func($atts) {
     }
     $html .= '<a href="' . $url . '" target="_blank" class="terashare-title"><span class="terashare-title">' . $title . '</span></a>';
     if ($sitename) {
-        //$html .= '<div class="terashare-sitename"><i class="fa fa-globe"></i> ' . htmlspecialchars($sitename) . '</div>';
         $html .= '<div class="terashare-sitename"><i class="fa fa-globe"></i> ' . $sitename . '</div>';
     }
     $html .= '<div class="terashare-description">' . $description . '</div>';
