@@ -54,7 +54,7 @@ function terashare_func($atts) {
     if ($imgurl) {
         $html .= '<img class="terashare-thumbnail" align="left" border="0" src="' . $imgurl . '" alt="Thumbnail of ' . $title . '" /></a>';
     } else {
-        $html .= '<img class="terachare-thumbnail" align="left" border="0" src="https://picsum.photos/160/120/?random" alt="Sample image by Lorem Picsum" /></a>';
+        $html .= '<img class="terashare-thumbnail" align="left" border="0" src="https://picsum.photos/160/120/?random" alt="Sample image by Lorem Picsum" /></a>';
     }
     $html .= '<a href="' . $url . '" target="_blank" class="terashare-title"><span class="terashare-title">' . $title . '</span></a>';
     if ($sitename) {
